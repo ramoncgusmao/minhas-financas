@@ -6,10 +6,15 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+
+import com.ramon.gerenciadorfinancas.model.enuns.StatusLancamento;
+import com.ramon.gerenciadorfinancas.model.enuns.TipoLancamento;
 
 import lombok.Data;
 
@@ -23,6 +28,8 @@ public class Lancamento {
 	
 	private Integer ano;
 	
+	private String descricao;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
@@ -32,4 +39,11 @@ public class Lancamento {
 	@Column(name = "data_cadastro")
 	@Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
 	private LocalDate dataCadastro;
+	
+	@Enumerated(value = EnumType.STRING)
+	private TipoLancamento tipo;
+
+	@Enumerated(value = EnumType.STRING)
+	private StatusLancamento status;
+	
 }
