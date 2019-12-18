@@ -3,10 +3,12 @@ package com.ramon.gerenciadorfinancas.service.impl;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ramon.gerenciadorfinancas.exception.RegraNegocioException;
@@ -15,6 +17,7 @@ import com.ramon.gerenciadorfinancas.model.enuns.StatusLancamento;
 import com.ramon.gerenciadorfinancas.repository.LancamentoRepository;
 import com.ramon.gerenciadorfinancas.service.LancamentoService;
 
+@Service
 public class LancamentoServiceImpl implements LancamentoService{
 
 	private LancamentoRepository repository;
@@ -93,6 +96,9 @@ public class LancamentoServiceImpl implements LancamentoService{
 			throw new RegraNegocioException("Informe um tipo de lançamento");
 		}
 	}
+	@Override
+	public Optional<Lancamento> obterPorId(Long id){
+		return repository.findById(id);
+	}
 	
-
 }

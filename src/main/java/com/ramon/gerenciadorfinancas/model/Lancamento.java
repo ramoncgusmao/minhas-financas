@@ -19,10 +19,16 @@ import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import com.ramon.gerenciadorfinancas.model.enuns.StatusLancamento;
 import com.ramon.gerenciadorfinancas.model.enuns.TipoLancamento;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Lancamento {
 
 	@Id

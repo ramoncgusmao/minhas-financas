@@ -1,6 +1,7 @@
 package com.ramon.gerenciadorfinancas.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.ramon.gerenciadorfinancas.model.Lancamento;
 import com.ramon.gerenciadorfinancas.model.enuns.StatusLancamento;
@@ -18,4 +19,6 @@ public interface LancamentoService {
 	void atualizarStatus(Lancamento lancamento, StatusLancamento status);
 	
 	void validar(Lancamento lancamento);
+	
+	Optional<Lancamento> obterPorId(Long id);
 }
