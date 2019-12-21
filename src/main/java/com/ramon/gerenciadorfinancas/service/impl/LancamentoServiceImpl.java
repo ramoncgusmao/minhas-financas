@@ -77,7 +77,7 @@ public class LancamentoServiceImpl implements LancamentoService{
 			throw new RegraNegocioException("Informe uma descrição válida.");
 		}
 		
-		if(lancamento.getMes() == null || lancamento.getMes() < 1 || lancamento.getMes() > 12) {
+		if(lancamento.getMes() == null || lancamento.getMes() < 0 || lancamento.getMes() >= 12) {
 			throw new RegraNegocioException("Informe um mês válido");
 		}
 		

@@ -22,7 +22,7 @@ import com.ramon.gerenciadorfinancas.service.UsuarioService;
 
 @RestController
 @RequestMapping("/api/usuarios")
-public class UsusarioResource {
+public class UsuarioResource {
 
 	@Autowired
 	private UsuarioService service;
