@@ -57,4 +57,5 @@ public class Lancamento {
 	@Enumerated(value = EnumType.STRING)
 	private StatusLancamento status;
 	
+
 }

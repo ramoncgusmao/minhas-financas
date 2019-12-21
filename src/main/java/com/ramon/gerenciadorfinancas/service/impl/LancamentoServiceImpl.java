@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ramon.gerenciadorfinancas.exception.RegraNegocioException;
 import com.ramon.gerenciadorfinancas.model.Lancamento;
 import com.ramon.gerenciadorfinancas.model.enuns.StatusLancamento;
+import com.ramon.gerenciadorfinancas.model.enuns.TipoLancamento;
 import com.ramon.gerenciadorfinancas.repository.LancamentoRepository;
 import com.ramon.gerenciadorfinancas.service.LancamentoService;
 
@@ -99,6 +100,17 @@ public class LancamentoServiceImpl implements LancamentoService{
 	@Override
 	public Optional<Lancamento> obterPorId(Long id){
 		return repository.findById(id);
+	}
+	@Override
+	@Transactional(readOnly = true)
+	public BigDecimal obterSaldoPorUsuario(Long id) {
+		BigDecimal receitas = repository.obterSaldoPorTipoLancamentoEUsuario(id, TipoLancamento.RECEITA);
+		BigDecimal despesas = repository.obterSaldoPorTipoLancamentoEUsuario(id, TipoLancamento.DESPESA);
+		
+		receitas = receitas == null ? BigDecimal.ZERO : receitas;
+		despesas = despesas == null ? BigDecimal.ZERO : despesas;
+		
+		return receitas.subtract(despesas);
 	}
 	
 }
